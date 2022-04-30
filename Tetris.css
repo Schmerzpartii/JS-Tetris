@@ -11,6 +11,24 @@
     width: 20px;
 }
 
+.mini-grid {
+    margin-left: 50px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: yellow;
+}
+
+.mini-grid div{
+    width: 20px;
+    height: 20px;
+}
+
 .tetromino {
     background-color: blue;
+}
+
+.container {
+    display: flex;
 }
