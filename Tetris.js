@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid');
     let squares = Array.from(document.querySelectorAll('.grid div'));
-    const scoreDisplay = document.querySelector('#score')
+    const scoreDisplay = document.querySelector('#scorePoints')
     const startBtn = document.querySelector('#start-button')
     const width = 10;
     let nextRandom = 0;
@@ -96,10 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
             nextRandom = Math.floor(Math.random() * theTetrominoes.length);
             current = theTetrominoes[random][currentRotation];
             currentPosition = 4;
+            currentRotation = 0;
+            gameOver();
             draw();
             displayShape();
             addScore();
-            gameOver();
         }
     }
 
@@ -169,10 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (timerId) {
             clearInterval(timerId);
             timerId = null;
+            startBtn.innerHTML="Start";
+            document.removeEventListener('keyup', control);
         } else {
             draw();
-            timerId = setInterval(moveDown, 1000);
-            nextRandom = Math.floor(Math.random()*theTetrominoes.length);
+            document.addEventListener('keyup', control);
+            timerId = setInterval(moveDown, 500);
+            startBtn.innerHTML="Pause";
+            //nextRandom = Math.floor(Math.random()*theTetrominoes.length);
             displayShape();
         }
     })
